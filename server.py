@@ -1,3 +1,5 @@
+"""Flask server for emotion detection web app."""
+
 from flask import Flask, request, render_template
 from EmotionDetection import emotion_detector
 
@@ -5,10 +7,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    """Render the homepage."""
     return render_template("index.html")
 
 @app.route("/emotionDetector", methods=["GET"])
 def emotion_detection_api():
+    """API endpoint for emotion detection."""
     text = request.args.get("textToAnalyze")
     if not text:
         # Always return 200 and a plain text error message for blank input
